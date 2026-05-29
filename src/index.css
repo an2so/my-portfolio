@@ -1,0 +1,288 @@
+html {
+  scrollbar-gutter: stable;
+  scroll-behavior: smooth;
+}
+
+:root {
+  --bg-color: #050505;
+  --bg-surface: #0a0a0c;
+  --bg-surface-light: rgba(255, 255, 255, 0.03);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --primary: #ff0833;
+  --primary-hover: #e00028;
+  --text-main: #ffffff;
+  --text-muted: #a3a3a3;
+  --font-family-en: 'Inter', sans-serif;
+  --font-family-ar: 'Cairo', sans-serif;
+  --font-family: var(--font-family-en);
+  --scrollbar-thumb: #333;
+}
+
+html[lang="ar"] {
+  --font-family: var(--font-family-ar);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-family);
+  border: none;
+  background: none;
+  transition: all 0.3s ease;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  font-weight: 700;
+}
+
+.section-subtitle {
+  color: var(--primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* UI Components */
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 500;
+  line-height: 1.2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 8, 51, 0.3);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--text-main);
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 500;
+  line-height: 1.2;
+  border: 1px solid var(--primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-outline:hover {
+  background-color: rgba(255, 8, 51, 0.1);
+  transform: translateY(-2px);
+}
+
+.btn-outline-subtle {
+  background-color: transparent;
+  color: var(--text-main);
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 500;
+  line-height: 1.2;
+  border: 1px solid var(--border-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-outline-subtle:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.card {
+  background-color: var(--bg-surface-light);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Spacing Helpers */
+.section-padding {
+  padding: 100px 0;
+}
+
+/* Light Mode Overrides */
+body.light-mode {
+  --bg-color: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-light: rgba(0, 0, 0, 0.02);
+  --border-color: rgba(0, 0, 0, 0.1);
+  --primary: #e60026;
+  --primary-hover: #cc0022;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --scrollbar-thumb: #cbd5e1;
+}
+
+/* Scroll to top button */
+.scroll-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--bg-surface-light);
+  border: 1px solid var(--border-color);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 999;
+  box-shadow: 0 4px 12px rgba(255, 8, 51, 0.15);
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+  background-color: rgba(255, 8, 51, 0.1);
+  transform: translateY(-5px);
+}
+
+@media (max-width: 768px) {
+  .scroll-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Light Mode Specific Overrides */
+body.light-mode .hero-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(248, 250, 252, 0.4) 0%,
+    rgba(248, 250, 252, 0.7) 50%,
+    var(--bg-color) 100%
+  );
+}
+
+
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 60px 0;
+  }
+  .section-title {
+    font-size: 1.85rem;
+    margin-bottom: 2rem;
+  }
+}
+
+/* RTL Scroll to Top Position */
+html[lang="ar"] .scroll-to-top {
+  right: auto;
+  left: 30px;
+}
+
+@media (max-width: 768px) {
+  html[lang="ar"] .scroll-to-top {
+    right: auto;
+    left: 20px;
+  }
+}
+
+/* Keyboard Accessibility focus outline */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+

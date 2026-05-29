@@ -1,0 +1,49 @@
+.reviews-section {
+  background-color: var(--bg-color);
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.review-card {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 32px;
+}
+
+.quote-icon {
+  color: var(--primary);
+  margin-bottom: 24px;
+}
+
+.review-text {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  flex-grow: 1;
+}
+
+.review-stars {
+  display: flex;
+  gap: 4px;
+}
+
+.star-icon {
+  color: #ffb000; /* Warm gold/yellow for 5-star rating visibility in all themes */
+}
+
+@media (max-width: 992px) {
+  .reviews-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+}

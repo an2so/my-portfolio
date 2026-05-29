@@ -1,0 +1,254 @@
+.about-section {
+  background-color: var(--bg-surface);
+}
+
+/* شبكة توزيع المحتوى لـ About (الصورة في اليسار والنص في اليمين) */
+.about-grid {
+  display: grid;
+  grid-template-columns: 0.82fr 1.18fr;
+  gap: 64px;
+  align-items: start;
+}
+
+/* عمود الصورة الأيسر */
+.about-profile-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* كرت الملف الشخصي زجاجي شفاف (Glassmorphism) */
+.about-profile-card.card {
+  padding: 0;
+  overflow: hidden;
+  background: rgba(10, 10, 12, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-profile-card.card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 8, 51, 0.25);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 8, 51, 0.05);
+}
+
+/* متوافق مع الثيم المضيء لكرت البروفايل */
+body.light-mode .about-profile-card.card {
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+body.light-mode .about-profile-card.card:hover {
+  border-color: rgba(230, 0, 38, 0.25);
+  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.12);
+}
+
+.about-profile-img-wrapper {
+  width: 100%;
+  height: auto;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0) 100%);
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.light-mode .about-profile-img-wrapper {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0) 100%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.about-profile-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transform: scale(1.12) translateY(-5%); /* Zoom in 12% and raise up 5% to center head at the red line */
+  transform-origin: center top;
+}
+
+
+
+/* أزرار الإجراءات داخل الكرت */
+.about-profile-card .about-actions {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.action-btn {
+  width: 100%;
+}
+
+.action-btn .lucide {
+  color: var(--primary);
+}
+
+.action-btn:hover .lucide {
+  color: var(--primary);
+}
+
+/* حاوية السيرة الذاتية والميزات */
+.about-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.about-paragraph {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.about-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.about-features {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.feature-item {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.feature-icon {
+  color: var(--primary);
+  background: rgba(255, 8, 51, 0.05);
+  padding: 12px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-title {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+
+.feature-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* حاوية الإحصائيات داخل العمود الأيمن */
+.about-stats-container {
+  width: 100%;
+  border-top: 1px solid var(--border-color);
+  padding-top: 32px;
+  margin-top: 8px; /* إضافة تباعد طفيف عن الميزات */
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.stats-text,
+.stats-text-line {
+  font-size: 1.02rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.stats-text-line:last-child {
+  margin-bottom: 0;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 24px 12px;
+  background: var(--bg-surface-light);
+}
+
+.stat-icon {
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+
+.stat-number {
+  font-size: 2.2rem;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  white-space: pre-line;
+}
+
+/* التجاوب مع الشاشات المتوسطة والصغيرة */
+@media (max-width: 992px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+
+}
+
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .stat-card:last-child {
+    grid-column: span 2;
+  }
+
+  .stat-card {
+    padding: 20px 8px;
+  }
+
+  .stat-icon {
+    margin-bottom: 8px;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+  }
+
+
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .stat-card:last-child {
+    grid-column: span 1;
+  }
+
+  .stat-card {
+    padding: 24px 16px;
+  }
+}
