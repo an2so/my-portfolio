@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Mail, MessageCircle, MapPin, Copy, Check } from 'lucide-react';
+import { Mail, MessageCircle, MapPin, Copy, Check, Maximize2, Minimize2 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import './Footer.css';
 
@@ -11,15 +11,16 @@ const Footer = () => {
   const [showPhoneWarning, setShowPhoneWarning] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
+  const [isMessageExpanded, setIsMessageExpanded] = useState(false);
 
   useEffect(() => {
     if (showConfirmModal) {
-      document.body.style.overflow = 'hidden';
+      document.documentElement.classList.add('scroll-lock');
     } else {
-      document.body.style.overflow = '';
+      document.documentElement.classList.remove('scroll-lock');
     }
     return () => {
-      document.body.style.overflow = '';
+      document.documentElement.classList.remove('scroll-lock');
     };
   }, [showConfirmModal]);
 
@@ -77,18 +78,26 @@ const Footer = () => {
       setStatus('idle');
     }
 
+    let finalValue = value;
+
     if (name === 'phone') {
       // Allow only numbers, spaces, +, -, and parentheses. Block all letters.
-      const sanitizedValue = value.replace(/[^0-9+\s\-()]/g, '');
-      setFormData({ ...formData, [name]: sanitizedValue });
-
+      finalValue = value.replace(/[^0-9+\s\-()]/g, '');
+      
       // Check if it starts with + or 00 (common country code prefix)
-      const hasPrefix = sanitizedValue.startsWith('+') || sanitizedValue.startsWith('00');
-      setShowPhoneWarning(sanitizedValue.length > 0 && !hasPrefix);
-      return;
+      const hasPrefix = finalValue.startsWith('+') || finalValue.startsWith('00');
+      setShowPhoneWarning(finalValue.length > 0 && !hasPrefix);
     }
 
-    setFormData({ ...formData, [name]: value });
+    const updatedFormData = { ...formData, [name]: finalValue };
+    setFormData(updatedFormData);
+
+    // Save form draft to localStorage
+    try {
+      localStorage.setItem('anas_portfolio_form_draft', JSON.stringify(updatedFormData));
+    } catch {
+      // Ignore localStorage errors
+    }
 
     if (name === 'email') {
       const suggestion = checkEmailTypo(value);
@@ -98,13 +107,53 @@ const Footer = () => {
 
   const applySuggestion = () => {
     if (suggestedEmail) {
-      setFormData({ ...formData, email: suggestedEmail });
+      const updatedFormData = { ...formData, email: suggestedEmail };
+      setFormData(updatedFormData);
       setSuggestedEmail(null);
       if (status === 'error-typo-blocked') {
         setStatus('idle');
       }
+      // Save suggestion update to draft
+      try {
+        localStorage.setItem('anas_portfolio_form_draft', JSON.stringify(updatedFormData));
+      } catch {
+        // Ignore
+      }
     }
   };
+
+  useEffect(() => {
+    try {
+      const savedDraft = localStorage.getItem('anas_portfolio_form_draft');
+      if (savedDraft) {
+        const parsed = JSON.parse(savedDraft);
+        const restoredData = {
+          name: parsed.name || '',
+          email: parsed.email || '',
+          phone: parsed.phone || '',
+          message: parsed.message || ''
+        };
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setFormData(restoredData);
+
+        if (restoredData.message.length > 120) {
+          setIsMessageExpanded(true);
+        }
+
+        if (restoredData.phone) {
+          const hasPrefix = restoredData.phone.startsWith('+') || restoredData.phone.startsWith('00');
+          setShowPhoneWarning(restoredData.phone.length > 0 && !hasPrefix);
+        }
+
+        if (restoredData.email) {
+          const suggestion = checkEmailTypo(restoredData.email);
+          setSuggestedEmail(suggestion);
+        }
+      }
+    } catch {
+      // Ignore
+    }
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -157,6 +206,12 @@ const Footer = () => {
         setStatus('success');
         setFormData({ name: '', email: '', phone: '', message: '' });
         setSuggestedEmail(null);
+        setIsMessageExpanded(false);
+        try {
+          localStorage.removeItem('anas_portfolio_form_draft');
+        } catch {
+          // Ignore
+        }
         setTimeout(() => setStatus('idle'), 5000); // clear success msg after 5s
       } else {
         setStatus('error');
@@ -328,7 +383,18 @@ const Footer = () => {
               </div>
               
               <div className="form-group">
-                <label htmlFor="message">{t('formMessage')}</label>
+                <div className="textarea-header">
+                  <label htmlFor="message">{t('formMessage')}</label>
+                  <button
+                    type="button"
+                    className={`textarea-expand-btn ${isMessageExpanded ? 'expanded' : ''}`}
+                    onClick={() => setIsMessageExpanded(!isMessageExpanded)}
+                    title={isMessageExpanded ? (language === 'ar' ? 'تصغير' : 'Collapse') : (language === 'ar' ? 'توسيع' : 'Expand')}
+                    aria-label="Expand message box"
+                  >
+                    {isMessageExpanded ? <Minimize2 size={14} /> : <Maximize2 size={14} />}
+                  </button>
+                </div>
                 <textarea
                   id="message"
                   name="message"
@@ -337,6 +403,7 @@ const Footer = () => {
                   placeholder={t('formMessagePlaceholder')}
                   rows="4"
                   dir="auto"
+                  className={isMessageExpanded ? 'expanded' : ''}
                   required
                 ></textarea>
               </div>

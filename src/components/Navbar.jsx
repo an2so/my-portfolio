@@ -76,6 +76,18 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock body scroll when mobile hamburger drawer is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.documentElement.classList.add('scroll-lock');
+    } else {
+      document.documentElement.classList.remove('scroll-lock');
+    }
+    return () => {
+      document.documentElement.classList.remove('scroll-lock');
+    };
+  }, [isMobileMenuOpen]);
+
   const scrollToTop = (e) => {
     e.preventDefault();
     closeMobileMenu();

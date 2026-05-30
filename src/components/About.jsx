@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { Code2, Users, Rocket, Target, CheckCircle2, FileText, Award } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { motion } from 'framer-motion';
@@ -6,18 +5,6 @@ import './About.css';
 
 const About = () => {
   const { t, language } = useLanguage();
-  const [modalType, setModalType] = useState(null); // null | 'resume' | 'certificate'
-
-  useEffect(() => {
-    if (modalType) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [modalType]);
 
   const isRtl = language === 'ar';
   const slideLeft = isRtl ? 50 : -50;
@@ -58,20 +45,22 @@ const About = () => {
               </div>
               
               <div className="about-actions">
-                <button 
+                <a 
                   className="btn-outline-subtle action-btn" 
-                  onClick={() => setModalType('resume')}
-                  type="button"
+                  href="/Anas_Malek_CV.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {t('viewResume')} <FileText size={16} />
-                </button>
-                <button 
+                </a>
+                <a 
                   className="btn-outline-subtle action-btn" 
-                  onClick={() => setModalType('certificate')}
-                  type="button"
+                  href="/Anas_Malek_Certificate.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {t('viewCert')} <Award size={16} />
-                </button>
+                </a>
               </div>
             </div>
           </motion.div>
@@ -168,58 +157,6 @@ const About = () => {
           </motion.div>
         </div>
       </div>
-
-      {/* Resume/Certificate Viewer Modal */}
-      {modalType && (
-        <div className="about-modal-overlay" onClick={() => setModalType(null)}>
-          <div className="about-modal-content card" onClick={(e) => e.stopPropagation()}>
-            <div className="about-modal-header">
-              <h3>
-                {modalType === 'resume' ? t('viewResume') : t('viewCert')}
-              </h3>
-            </div>
-            
-            <div className="about-modal-body">
-              {modalType === 'resume' ? (
-                <div className="about-modal-pages">
-                  <img 
-                    src="/Anas_Malek_CV.jpg" 
-                    alt="Anas Malek Resume Page 1" 
-                    className="about-modal-media"
-                  />
-                  <img 
-                    src="/Anas_Malek_CV1.jpg" 
-                    alt="Anas Malek Resume Page 2" 
-                    className="about-modal-media"
-                  />
-                </div>
-              ) : (
-                <img 
-                  src="/Anas_Malek_Certificate.jpg" 
-                  alt="Anas Malek Certificate" 
-                  className="about-modal-media"
-                />
-              )}
-            </div>
-            
-            <div className="about-modal-footer">
-              <a 
-                href={modalType === 'resume' ? '/Anas_Malek_CV.pdf' : '/Anas_Malek_Certificate.pdf'} 
-                download
-                className="btn-primary"
-              >
-                {language === 'ar' ? 'تحميل بصيغة PDF' : 'Download as PDF'}
-              </a>
-              <button 
-                className="btn-outline-subtle" 
-                onClick={() => setModalType(null)}
-              >
-                {language === 'ar' ? 'إغلاق' : 'Close'}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 };

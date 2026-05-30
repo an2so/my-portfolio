@@ -200,10 +200,10 @@ body.light-mode {
 /* Scroll to top button */
 .scroll-to-top {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 48px;
-  height: 48px;
+  bottom: 45px;
+  right: 40px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
   background-color: var(--bg-surface-light);
   border: 1px solid var(--border-color);
@@ -233,10 +233,10 @@ body.light-mode {
 
 @media (max-width: 768px) {
   .scroll-to-top {
-    bottom: 20px;
-    right: 20px;
-    width: 40px;
-    height: 40px;
+    bottom: 35px;
+    right: 24px;
+    width: 46px;
+    height: 46px;
   }
 }
 
@@ -250,7 +250,11 @@ body.light-mode .hero-overlay {
   );
 }
 
-
+@media (max-width: 960px) {
+  .container {
+    padding: 0 16px;
+  }
+}
 
 @media (max-width: 768px) {
   .section-padding {
@@ -265,13 +269,13 @@ body.light-mode .hero-overlay {
 /* RTL Scroll to Top Position */
 html[lang="ar"] .scroll-to-top {
   right: auto;
-  left: 30px;
+  left: 40px;
 }
 
 @media (max-width: 768px) {
   html[lang="ar"] .scroll-to-top {
     right: auto;
-    left: 20px;
+    left: 24px;
   }
 }
 
@@ -282,6 +286,11 @@ input:focus-visible,
 textarea:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 3px;
+}
+
+/* Global scroll lock class */
+html.scroll-lock {
+  overflow: hidden !important;
 }
 
 

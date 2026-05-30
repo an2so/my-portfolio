@@ -314,7 +314,8 @@ body.light-mode .mobile-drawer .logo-accent {
   padding: 28px;
   padding-bottom: max(28px, env(safe-area-inset-bottom, 0px));
   direction: ltr;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body.light-mode .mobile-drawer {
@@ -353,6 +354,7 @@ body.light-mode .mobile-drawer {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border-color);
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-right: -10px;
 }
 
 body.light-mode .close-menu-btn {
@@ -421,7 +423,7 @@ body.light-mode .close-menu-btn {
 }
 
 .mobile-drawer-actions {
-  margin-top: auto;
+  margin-top: 32px;
   padding-top: 24px;
   padding-bottom: 8px;
   border-top: 1px solid color-mix(in srgb, var(--border-color) 40%, transparent);
@@ -544,6 +546,27 @@ body.light-mode .close-menu-btn {
   .theme-toggle {
     width: 34px;
     height: 34px;
+  }
+
+  .navbar-container {
+    gap: 10px;
+  }
+
+  .mobile-menu-btn {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    min-height: 34px;
+  }
+
+  .nav-actions {
+    gap: 6px;
+  }
+}
+
+@media (max-width: 340px) {
+  .container {
+    padding: 0 12px;
   }
 }
 

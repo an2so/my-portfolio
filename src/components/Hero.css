@@ -125,12 +125,22 @@ body.light-mode .hero-background {
   background-color: rgba(255, 8, 51, 0.1);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 960px), (max-height: 550px) {
+  .hero-section {
+    padding-top: 90px;
+  }
+  .role-badge {
+    margin-bottom: 16px;
+    padding: 5px 14px;
+    font-size: 0.8rem;
+  }
   .hero-title {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
+    margin-bottom: 16px;
   }
   .hero-description {
-    font-size: 1rem;
+    font-size: 0.95rem;
+    margin-bottom: 24px;
   }
   .hero-content {
     margin-top: 0;
