@@ -6,8 +6,8 @@ import { useState, useEffect } from 'react';
 import './Hero.css';
 
 const Hero = () => {
-  const { t } = useLanguage();
-  const { theme } = useTheme();
+  const t = useLanguage().t;
+  const theme = useTheme().theme;
 
   // Hide the video temporarily on initial mount if reload occurs while scrolled down
   const [hideVideoOnLoad, setHideVideoOnLoad] = useState(() => {
@@ -66,7 +66,6 @@ const Hero = () => {
           muted
           defaultMuted
           playsInline
-          webkit-playsinline="true"
           preload="auto"
           className={`hero-video-bg ${theme === 'dark' ? 'active' : ''}`}
         >
@@ -78,7 +77,6 @@ const Hero = () => {
           muted
           defaultMuted
           playsInline
-          webkit-playsinline="true"
           preload="auto"
           className={`hero-video-bg ${theme === 'light' ? 'active' : ''}`}
         >
