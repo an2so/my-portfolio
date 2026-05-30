@@ -8,8 +8,15 @@ import './Hero.css';
 const Hero = () => {
   const { t } = useLanguage();
   const { theme } = useTheme();
+  const [isLoopFading, setIsLoopFading] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth > 1024;
+    }
+    return false;
+  });
 
-  // Hide the video temporarily on initial mount if reload occurs while scrolled down
+  // Hide the video/image temporarily on initial mount if reload occurs while scrolled down
   const [hideVideoOnLoad, setHideVideoOnLoad] = useState(() => {
     if (typeof window !== 'undefined') {
       return sessionStorage.getItem('isScrolled') === 'true';
@@ -18,10 +25,19 @@ const Hero = () => {
   });
 
   useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth > 1024);
+    };
+    window.addEventListener('resize', handleResize);
+
     const timeout = setTimeout(() => {
       setHideVideoOnLoad(false);
     }, 200);
-    return () => clearTimeout(timeout);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(timeout);
+    };
   }, []);
 
   const handleScrollToWork = (e) => {
@@ -35,6 +51,30 @@ const Hero = () => {
         });
       }
     }, 100);
+  };
+
+  const handleTimeUpdate = (e) => {
+    const video = e.target;
+    if (!video.duration) return;
+
+    const isActive = video.classList.contains('active');
+
+    if (isActive) {
+      if (video.currentTime >= video.duration - 0.4 && !isLoopFading) {
+        setIsLoopFading(true);
+        setTimeout(() => {
+          video.currentTime = 0.0;
+          video.play().catch(() => {});
+          setIsLoopFading(false);
+        }, 250);
+      }
+    } else {
+      // Inactive video loops normally in the background without affecting the visual fade state
+      if (video.currentTime >= video.duration - 0.1) {
+        video.currentTime = 0.0;
+        video.play().catch(() => {});
+      }
+    }
   };
 
   const containerVariants = {
@@ -60,30 +100,43 @@ const Hero = () => {
   return (
     <section id="hero" className="hero-section">
       <div className={`hero-background ${hideVideoOnLoad ? 'hide-media' : ''}`}>
-        <video
-          autoPlay
-          loop
-          muted
-          defaultMuted
-          playsInline
-          webkit-playsinline="true"
-          preload="auto"
-          className={`hero-video-bg ${theme === 'dark' ? 'active' : ''}`}
-        >
-          <source src="/videos/hero-bg-dark.mp4" type="video/mp4" />
-        </video>
-        <video
-          autoPlay
-          loop
-          muted
-          defaultMuted
-          playsInline
-          webkit-playsinline="true"
-          preload="auto"
-          className={`hero-video-bg ${theme === 'light' ? 'active' : ''}`}
-        >
-          <source src="/videos/hero-bg-light.mp4" type="video/mp4" />
-        </video>
+        {isDesktop ? (
+          <>
+            <video
+              autoPlay
+              muted
+              playsInline
+              preload="auto"
+              onTimeUpdate={handleTimeUpdate}
+              className={`hero-video-bg ${theme === 'dark' ? 'active' : ''} ${isLoopFading ? 'loop-fade' : ''}`}
+            >
+              <source src="/videos/hero-bg-dark.mp4" type="video/mp4" />
+            </video>
+            <video
+              autoPlay
+              muted
+              playsInline
+              preload="auto"
+              onTimeUpdate={handleTimeUpdate}
+              className={`hero-video-bg ${theme === 'light' ? 'active' : ''} ${isLoopFading ? 'loop-fade' : ''}`}
+            >
+              <source src="/videos/hero-bg-light.mp4" type="video/mp4" />
+            </video>
+          </>
+        ) : (
+          <>
+            <img
+              src="/hero-bg-dark-poster.png"
+              alt=""
+              className={`hero-image-bg ${theme === 'dark' ? 'active' : ''}`}
+            />
+            <img
+              src="/hero-bg-light-poster.png"
+              alt=""
+              className={`hero-image-bg ${theme === 'light' ? 'active' : ''}`}
+            />
+          </>
+        )}
         <div className="hero-overlay"></div>
       </div>
 

@@ -1,7 +1,6 @@
 .hero-section {
   position: relative;
   min-height: 100vh;
-  min-height: 100svh;
   display: flex;
   align-items: center;
   padding-top: 80px; /* Offset for navbar */
@@ -23,7 +22,8 @@ body.light-mode .hero-background {
   background: radial-gradient(circle at center, rgba(230, 0, 38, 0.02) 0%, #f8fafc 100%);
 }
 
-.hero-video-bg {
+.hero-video-bg,
+.hero-image-bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -39,8 +39,14 @@ body.light-mode .hero-background {
   transform: translate3d(0, 0, 0);
 }
 
-.hero-video-bg.active {
+.hero-video-bg.active,
+.hero-image-bg.active {
   opacity: 1;
+}
+
+.hero-video-bg.loop-fade {
+  opacity: 0.15 !important;
+  transition: opacity 0.25s ease-in-out !important;
 }
 
 
@@ -120,9 +126,6 @@ body.light-mode .hero-background {
 }
 
 @media (max-width: 768px) {
-  .hero-video-bg {
-    display: none !important;
-  }
   .hero-title {
     font-size: 2.5rem;
   }
@@ -134,7 +137,8 @@ body.light-mode .hero-background {
   }
 }
 
-/* إخفاء الفيديو التفاعلي مؤقتاً عند الـ Refresh بالأسفل لمنع الوميض البصري الخاطف */
-.hero-background.hide-media video {
+/* إخفاء الوسائط مؤقتاً عند الـ Refresh بالأسفل لمنع الوميض البصري الخاطف */
+.hero-background.hide-media video,
+.hero-background.hide-media img {
   display: none !important;
 }
