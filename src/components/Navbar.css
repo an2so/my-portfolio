@@ -301,7 +301,9 @@ body.light-mode .mobile-drawer .logo-accent {
   backdrop-filter: blur(32px) saturate(1.7);
   -webkit-backdrop-filter: blur(32px) saturate(1.7);
   z-index: 1002;
-  transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1), visibility 0.4s;
   box-shadow: -8px 0 40px rgba(0, 0, 0, 0.3);
   border-left: 1px solid color-mix(in srgb, var(--border-color) 30%, transparent);
   border-radius: 20px 0 0 20px;
@@ -311,7 +313,6 @@ body.light-mode .mobile-drawer .logo-accent {
   padding-bottom: max(28px, env(safe-area-inset-bottom, 0px));
   direction: ltr;
   overflow: hidden;
-  pointer-events: auto;
 }
 
 body.light-mode .mobile-drawer {
@@ -326,6 +327,8 @@ body.light-mode .mobile-drawer {
 
 .mobile-drawer.open {
   transform: translateX(0);
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .mobile-drawer-header {
