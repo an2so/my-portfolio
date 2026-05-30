@@ -22,7 +22,6 @@
   transition: background 0.35s ease, padding 0.35s ease, box-shadow 0.35s ease;
   background: transparent;
   direction: ltr;
-  isolation: isolate;
 }
 
 /* إلغاء حركة الانتقال للنافبار عند التحميل الأول فقط لمنع وميض الشفافية */
