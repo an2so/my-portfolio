@@ -44,35 +44,36 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    const sectionIds = ['hero', 'about', 'how-i-work', 'services', 'techstack', 'work', 'reviews', 'contact'];
-    
-    const handleIntersect = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          if (id === 'how-i-work') {
-            setActiveSection('about');
-          } else if (id === 'techstack') {
-            setActiveSection('services');
-          } else {
-            setActiveSection(id);
+    const handleScroll = () => {
+      const sectionIds = ['hero', 'about', 'how-i-work', 'services', 'techstack', 'work', 'reviews', 'contact'];
+      // Trigger when the section top is 120px from the top of the viewport (just below the navbar)
+      const scrollPosition = window.scrollY + 120;
+      
+      let active = 'hero';
+      for (let i = 0; i < sectionIds.length; i++) {
+        const id = sectionIds[i];
+        const el = document.getElementById(id);
+        if (el) {
+          const top = el.offsetTop;
+          if (scrollPosition >= top) {
+            active = id;
           }
         }
-      });
+      }
+      
+      if (active === 'how-i-work') {
+        setActiveSection('about');
+      } else if (active === 'techstack') {
+        setActiveSection('services');
+      } else {
+        setActiveSection(active);
+      }
     };
 
-    const observer = new IntersectionObserver(handleIntersect, {
-      root: null,
-      rootMargin: '-30% 0px -60% 0px',
-      threshold: 0
-    });
-
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial call
+    
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToTop = (e) => {
