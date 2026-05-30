@@ -1,6 +1,7 @@
 .hero-section {
   position: relative;
   min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   padding-top: 80px; /* Offset for navbar */
@@ -40,11 +41,6 @@ body.light-mode .hero-background {
 
 .hero-video-bg.active {
   opacity: 1;
-}
-
-.hero-video-bg.loop-fade {
-  opacity: 0.15 !important;
-  transition: opacity 0.25s ease-in-out !important;
 }
 
 

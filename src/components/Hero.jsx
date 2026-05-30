@@ -8,7 +8,6 @@ import './Hero.css';
 const Hero = () => {
   const { t } = useLanguage();
   const { theme } = useTheme();
-  const [isLoopFading, setIsLoopFading] = useState(false);
 
   // Hide the video temporarily on initial mount if reload occurs while scrolled down
   const [hideVideoOnLoad, setHideVideoOnLoad] = useState(() => {
@@ -38,30 +37,6 @@ const Hero = () => {
     }, 100);
   };
 
-  const handleTimeUpdate = (e) => {
-    const video = e.target;
-    if (!video.duration) return;
-
-    const isActive = video.classList.contains('active');
-
-    if (isActive) {
-      if (video.currentTime >= video.duration - 0.4 && !isLoopFading) {
-        setIsLoopFading(true);
-        setTimeout(() => {
-          video.currentTime = 0.0;
-          video.play().catch(() => {});
-          setIsLoopFading(false);
-        }, 250);
-      }
-    } else {
-      // Inactive video loops normally in the background without affecting the visual fade state
-      if (video.currentTime >= video.duration - 0.1) {
-        video.currentTime = 0.0;
-        video.play().catch(() => {});
-      }
-    }
-  };
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -87,21 +62,25 @@ const Hero = () => {
       <div className={`hero-background ${hideVideoOnLoad ? 'hide-media' : ''}`}>
         <video
           autoPlay
+          loop
           muted
+          defaultMuted
           playsInline
+          webkit-playsinline="true"
           preload="auto"
-          onTimeUpdate={handleTimeUpdate}
-          className={`hero-video-bg ${theme === 'dark' ? 'active' : ''} ${isLoopFading ? 'loop-fade' : ''}`}
+          className={`hero-video-bg ${theme === 'dark' ? 'active' : ''}`}
         >
           <source src="/videos/hero-bg-dark.mp4" type="video/mp4" />
         </video>
         <video
           autoPlay
+          loop
           muted
+          defaultMuted
           playsInline
+          webkit-playsinline="true"
           preload="auto"
-          onTimeUpdate={handleTimeUpdate}
-          className={`hero-video-bg ${theme === 'light' ? 'active' : ''} ${isLoopFading ? 'loop-fade' : ''}`}
+          className={`hero-video-bg ${theme === 'light' ? 'active' : ''}`}
         >
           <source src="/videos/hero-bg-light.mp4" type="video/mp4" />
         </video>
