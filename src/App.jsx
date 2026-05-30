@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { LanguageProvider } from './contexts/LanguageContext';
 import { ArrowUp } from 'lucide-react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 function AppContent() {
   const [showTopBtn, setShowTopBtn] = useState(false);
@@ -62,6 +63,7 @@ function App() {
     <ThemeProvider>
       <LanguageProvider>
         <AppContent />
+        <SpeedInsights />
       </LanguageProvider>
     </ThemeProvider>
   );
