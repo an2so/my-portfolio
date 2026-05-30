@@ -38,11 +38,11 @@ body.light-mode .mobile-drawer {
   --nav-link-glow: rgba(196, 30, 56, 0.4);
 }
 
-/* Glassmorphism on scroll — premium depth, no hard border */
 .navbar.scrolled {
+  background: rgba(10, 10, 12, 0.42);
   background: color-mix(in srgb, var(--bg-surface) 42%, transparent);
-  backdrop-filter: blur(22px) saturate(1.6);
   -webkit-backdrop-filter: blur(22px) saturate(1.6);
+  backdrop-filter: blur(22px) saturate(1.6);
   padding: 14px 0;
   box-shadow:
     inset 0 1px 0 0 color-mix(in srgb, var(--text-main) 6%, transparent),
@@ -51,9 +51,10 @@ body.light-mode .mobile-drawer {
 }
 
 body.light-mode .navbar.scrolled {
+  background: rgba(255, 255, 255, 0.18);
   background: color-mix(in srgb, var(--bg-surface) 18%, transparent);
-  backdrop-filter: blur(24px) saturate(1.4);
   -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  backdrop-filter: blur(24px) saturate(1.4);
   box-shadow:
     inset 0 1px 0 0 color-mix(in srgb, #ffffff 50%, transparent),
     inset 0 -1px 0 0 color-mix(in srgb, var(--border-color) 12%, transparent),
@@ -269,8 +270,8 @@ body.light-mode .mobile-drawer .logo-accent {
   width: 100%;
   height: 100vh;
   background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
   z-index: 1001;
   opacity: 0;
   visibility: hidden;
@@ -297,9 +298,10 @@ body.light-mode .mobile-drawer .logo-accent {
   height: 100vh;
   height: 100dvh;
   max-height: 100dvh;
+  background: rgba(10, 10, 12, 0.72);
   background: color-mix(in srgb, var(--bg-surface) 72%, transparent);
-  backdrop-filter: blur(32px) saturate(1.7);
   -webkit-backdrop-filter: blur(32px) saturate(1.7);
+  backdrop-filter: blur(32px) saturate(1.7);
   z-index: 1002;
   visibility: hidden;
   pointer-events: none;
@@ -316,9 +318,10 @@ body.light-mode .mobile-drawer .logo-accent {
 }
 
 body.light-mode .mobile-drawer {
+  background: rgba(255, 255, 255, 0.35);
   background: color-mix(in srgb, var(--bg-surface) 35%, transparent);
-  backdrop-filter: blur(34px) saturate(1.4);
   -webkit-backdrop-filter: blur(34px) saturate(1.4);
+  backdrop-filter: blur(34px) saturate(1.4);
   box-shadow: -6px 0 32px rgba(15, 23, 42, 0.15);
   border-left: 1px solid color-mix(in srgb, var(--border-color) 20%, transparent);
 }
