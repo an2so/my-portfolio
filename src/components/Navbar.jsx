@@ -132,13 +132,13 @@ const Navbar = () => {
                 onClick={() => toggleLanguage('en')}
                 type="button"
                 aria-label="Switch language to English"
-              >English</button>
+              >EN</button>
               <button
                 className={language === 'ar' ? 'active' : ''}
                 onClick={() => toggleLanguage('ar')}
                 type="button"
                 aria-label="Switch language to Arabic"
-              >العربية</button>
+              >AR</button>
             </div>
             <a 
               className="btn-primary nav-btn desktop-btn" 

@@ -100,6 +100,25 @@
   .step-card {
     flex: 0 1 calc(50% - 12px);
   }
+
+  .step-card:last-child {
+    flex: 0 1 100%;
+  }
+}
+
+@media (max-width: 992px) and (min-width: 577px) {
+  .step-card:last-child {
+    align-items: center;
+    text-align: center;
+  }
+
+  .step-card:last-child .step-header {
+    width: 100%;
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-between;
+  }
 }
 
 @media (max-width: 576px) {

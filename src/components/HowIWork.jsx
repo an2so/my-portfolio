@@ -5,35 +5,35 @@ import './HowIWork.css';
 
 const steps = [
   {
-    number: "01",
+    number: "1",
     icon: Lightbulb,
     titleKey: "step1Title",
     descKey: "step1Desc",
     color: "rgba(255, 8, 51, 0.04)",
   },
   {
-    number: "02",
+    number: "2",
     icon: Compass,
     titleKey: "step2Title",
     descKey: "step2Desc",
     color: "rgba(255, 8, 51, 0.04)",
   },
   {
-    number: "03",
+    number: "3",
     icon: Palette,
     titleKey: "step3Title",
     descKey: "step3Desc",
     color: "rgba(255, 8, 51, 0.04)",
   },
   {
-    number: "04",
+    number: "4",
     icon: Code2,
     titleKey: "step4Title",
     descKey: "step4Desc",
     color: "rgba(255, 8, 51, 0.04)",
   },
   {
-    number: "05",
+    number: "5",
     icon: Zap,
     titleKey: "step5Title",
     descKey: "step5Desc",

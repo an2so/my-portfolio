@@ -3,7 +3,15 @@
   <head>
     <script>
       (function() {
-        const savedLang = localStorage.getItem('language') || 'en';
+        let savedLang = localStorage.getItem('language');
+        if (!savedLang) {
+          try {
+            const browserLang = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+            savedLang = browserLang.toLowerCase().startsWith('ar') ? 'ar' : 'en';
+          } catch {
+            savedLang = 'en';
+          }
+        }
         document.documentElement.lang = savedLang;
         document.documentElement.dir = savedLang === 'ar' ? 'rtl' : 'ltr';
       })();
@@ -21,9 +29,19 @@
   <body>
     <script>
       (function() {
-        const savedTheme = localStorage.getItem('theme') || 'dark';
+        let savedTheme = localStorage.getItem('theme');
+        if (!savedTheme) {
+          try {
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            savedTheme = prefersDark ? 'dark' : 'light';
+          } catch {
+            savedTheme = 'dark';
+          }
+        }
         if (savedTheme === 'light') {
           document.body.classList.add('light-mode');
+        } else {
+          document.body.classList.remove('light-mode');
         }
       })();
     </script>

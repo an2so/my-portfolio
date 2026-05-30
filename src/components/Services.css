@@ -60,7 +60,7 @@
 
 @media (min-width: 769px) {
   .service-title {
-    min-height: 3.2rem;
+    min-height: 5.3rem;
   }
 }
 
@@ -89,6 +89,26 @@ html[lang="ar"] .service-divider {
 @media (max-width: 1200px) {
   .service-card {
     flex: 0 1 calc(50% - 16px);
+  }
+  
+  .service-card:last-child {
+    flex: 0 1 100%;
+  }
+}
+
+@media (max-width: 1200px) and (min-width: 769px) {
+  .service-card:last-child {
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px;
+  }
+
+  .service-card:last-child .service-content {
+    flex: 0 1 600px;
+  }
+
+  .service-card:last-child .service-title {
+    min-height: auto;
   }
 }
 

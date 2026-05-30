@@ -6,7 +6,24 @@ const LanguageContext = createContext(null);
 
 export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState(() => {
-    return localStorage.getItem('language') || 'en';
+    try {
+      const savedLanguage = localStorage.getItem('language');
+      if (savedLanguage === 'ar' || savedLanguage === 'en') {
+        return savedLanguage;
+      }
+      
+      // الكشف التلقائي عن لغة متصفح أو نظام العميل
+      const browserLang = (
+        (navigator.languages && navigator.languages[0]) ||
+        navigator.language ||
+        navigator.userLanguage ||
+        'en'
+      ).toLowerCase();
+      
+      return browserLang.startsWith('ar') ? 'ar' : 'en';
+    } catch {
+      return 'en';
+    }
   });
 
   useEffect(() => {

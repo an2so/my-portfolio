@@ -559,6 +559,9 @@ html[lang="ar"] .confirm-phone-display span.phone-number-value {
 
   .footer-form-container {
     padding: 32px 24px;
+    max-width: 580px;
+    width: 100%;
+    margin: 0 auto;
   }
 }
 
@@ -625,7 +628,14 @@ html[lang="ar"] .form-group input#email {
 
 /* محاذاة النص والاتجاه بالكامل لليمين عندما يكون الحقل فارغاً ويظهر التلميح العربي */
 html[lang="ar"] .form-group input#phone:placeholder-shown,
-html[lang="ar"] .form-group input#email:placeholder-shown {
+html[lang="ar"] .form-group input#email:placeholder-shown,
+html[lang="ar"] .form-group textarea:placeholder-shown {
+  direction: rtl;
+  text-align: right;
+}
+
+/* التأكيد على محاذاة تلميح (placeholder) صندوق الرسالة لليمين في اللغة العربية */
+html[lang="ar"] .form-group textarea::placeholder {
   direction: rtl;
   text-align: right;
 }

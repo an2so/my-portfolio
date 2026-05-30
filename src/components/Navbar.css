@@ -461,10 +461,12 @@ body.light-mode .close-menu-btn {
   }
 }
 
-/* Tablet: preserve nav links, hide CTA button */
+/* Tablet: preserve nav links, make CTA button compact */
 @media (max-width: 1024px) {
   .desktop-btn {
-    display: none;
+    min-width: auto;
+    padding: 8px 14px;
+    font-size: 0.82rem;
   }
 
   .nav-links {
