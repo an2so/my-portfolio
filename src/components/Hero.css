@@ -1,6 +1,7 @@
 .hero-section {
   position: relative;
   min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   padding-top: 80px; /* Offset for navbar */
@@ -119,6 +120,9 @@ body.light-mode .hero-background {
 }
 
 @media (max-width: 768px) {
+  .hero-video-bg {
+    display: none !important;
+  }
   .hero-title {
     font-size: 2.5rem;
   }
