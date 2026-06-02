@@ -124,7 +124,7 @@ const Navbar = () => {
           <a href="#" onClick={scrollToTop} className="logo logo-link">
             <span className="logo-icon">&lt;/&gt;</span>
             <span className="logo-text">Anas</span>
-            <span className="logo-accent">Malek</span>
+            <span className="logo-accent">Saadeh</span>
           </a>
 
           <ul className="nav-links">
@@ -184,7 +184,7 @@ const Navbar = () => {
           <a href="#" onClick={scrollToTop} className="logo logo-link" dir="ltr">
             <span className="logo-icon">&lt;/&gt;</span>
             <span className="logo-text">Anas</span>
-            <span className="logo-accent">Malek</span>
+            <span className="logo-accent">Saadeh</span>
           </a>
           <button className="close-menu-btn" onClick={closeMobileMenu} aria-label="Close menu" type="button">
             <X size={24} />

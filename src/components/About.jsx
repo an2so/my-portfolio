@@ -39,7 +39,7 @@ const About = () => {
               <div className="about-profile-img-wrapper">
                 <img 
                   src="/anas-profile.png" 
-                  alt="Anas Malek" 
+                  alt="Anas Saadeh" 
                   className="about-profile-img" 
                 />
               </div>

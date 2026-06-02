@@ -101,7 +101,7 @@ export const translations = {
     formDidYouMean: "Did you mean: ",
     formEmailInvalid: "Please enter a valid email address.",
     formEmailTypoBlocked: "Your email contains a spelling error. Please click the suggestion below to proceed.",
-    copyright: "© 2026 Anas Malek. All rights reserved."
+    copyright: "© 2026 Anas Saadeh. All rights reserved."
   },
   ar: {
     navAbout: "نبذة عني",
@@ -205,6 +205,6 @@ export const translations = {
     formDidYouMean: "هل تقصد: ",
     formEmailInvalid: "يرجى إدخال بريد إلكتروني صحيح.",
     formEmailTypoBlocked: "البريد الإلكتروني يحتوي على خطأ إملائي. يرجى الضغط على التصحيح أدناه للمتابعة.",
-    copyright: "© 2026 أنس مالك. جميع الحقوق محفوظة."
+    copyright: "© 2026 أنس سعادة. جميع الحقوق محفوظة."
   }
 };
