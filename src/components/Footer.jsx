@@ -311,7 +311,7 @@ const Footer = () => {
                   <i className="devicon-github-original" style={{ fontSize: '24px' }}></i>
                 </a>
                 <a 
-                  href="https://www.linkedin.com/in/anas-saadeh-865364367" 
+                  href="https://www.linkedin.com/in/anas-saadeh" 
                   className="social-link card" 
                   aria-label="LinkedIn" 
                   target="_blank" 

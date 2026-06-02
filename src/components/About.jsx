@@ -47,7 +47,7 @@ const About = () => {
               <div className="about-actions">
                 <a 
                   className="btn-outline-subtle action-btn" 
-                  href="/Anas_Malek_CV.pdf"
+                  href="/Anas_Saadeh_CV.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
