@@ -1,0 +1,17 @@
+{
+  "short_name": "Anas Saadeh",
+  "name": "Anas Saadeh | Software Engineer",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#0a0a0c",
+  "theme_color": "#ff0833",
+  "display": "standalone",
+  "orientation": "portrait"
+}
